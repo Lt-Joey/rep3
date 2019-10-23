@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-3.4.1.js" ></script>
+		<script>
+			$(function(){
+				$("#btn1").click(function(){
+					//异步提交表单
+					$.ajax({
+						type:"post";
+						url:"/regist",
+						async:true,
+						data:"ename="+$("#ename").val()+"&job="+$("#job").val(),
+						success:function(){
+							alert("注册成功")
+						},
+						error:function(){
+							alert("提交失败")
+						}
+					})
+				})
+			})
+		</script>
+	</head>
+	<body>
+			用户名：<input id="ename" type="用户名" name="ename" />
+			岗位：<input id="job" type="用户名" name="job" />
+			<input type="button" id="btn1" value="提交" />
+	</body>
+</html>

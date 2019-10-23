@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-3.4.1.js" ></script>
+		<script>
+			$(function(){
+				$("#btn1").click(function(){
+					$.get("/list2",function(emps){
+						//遍历集合
+						$(emps).each(function(index,emp){
+							//创建一行
+							var $tr=$("<tr></tr>");
+							//创建一列
+							var $td=$("<td>"+emp.empno+"</td><td>"+emp.ename+"</td><td>"+emp.job+"</td><td>"+emp.mgr+"</td><td>"+emp.hiredate+"</td><td>"+emp.sal+"</td><td>"+emp.comm+"</td><td>"+emp.deptno+"</td>")
+							$tr.append($td)
+							$("#mytable").append($tr);
+						})
+					})
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<button id="btn1">异步获取数据</button>
+		<table id="mytable" border="1px" width="800px">
+			<thead>
+			<tr>
+			<th>序号</th>
+			<th>编号</th>
+			<th>姓名</th>
+			<th>岗位</th>
+			<th>上级领导编号</th>
+			<th>工资</th>
+			<th>奖金</th>
+			<th>部门编号</th>
+			</tr>
+		</thead>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form th:action="regist" method="post" th:object="${user}">
+		员工编号：<input th:field="*{empno}"> <br>
+		员工姓名：<input type="text" name="ename"><br>
+		员工岗位：<input type="text" name="job"><br>
+		上级编号：<input type="text" name="mgr"><br>
+		入职日期：<input type="date" name="hiredate"><br>
+		工资：<input type="number"  name="sal"><br>
+		奖金：<input type="number"  name="comm"><br>
+		部门：<input type="number"  name="deptno"><br>
+		<input type="submit" value="提交">
+	</form>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-3.4.1.js" ></script>
+		<script>
+			$(function(){
+				$("#btn1").click(function(){
+					//异步请求
+					$.get("/list2",function(emps){
+						console.log(emps);
+						//遍历emps
+						$(emps).each(function(index,dom){
+							console.log(dom.ename);
+						});
+					})	
+				})
+				
+			})
+		</script>
+	</head>
+	<body>
+		<button id="btn1">获取所有员工姓名</button>
+	</body>
+</html>

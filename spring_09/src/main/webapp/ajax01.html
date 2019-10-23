@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>分别使用下列三种方式，验证用户名是否存在。</title>
+<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+<script>
+			$(function(){
+				$("#btn1").click(function(){
+					//使用jQuery的异步请求
+					$.ajax({
+						type:"get",
+						url:"/test1",
+						async:true,
+						success:function(data){
+							console.log(data);
+						},
+						error:function(){
+							alert("请求出错");
+						}
+					})
+				})
+				
+				$("#btn2").click(function(){
+					//get方法请求
+					$.get("/test1",function(data){
+						console.log(data);
+					})
+				})
+				
+				$("#btn3").click(function(){
+					//post方法请求
+					$.post("/test1",function(data){
+						console.log(data);
+					})
+				})
+			})
+		</script>
+</head>
+<body>
+	<button id="btn1">ajax请求数据</button>
+	<button id="btn2">get请求数据</button>
+	<button id="btn3">post请求数据</button>
+</body>
+</html>

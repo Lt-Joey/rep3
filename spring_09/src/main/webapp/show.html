@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.highlight{
+		background-color: yellow;
+	}
+</style>
+</head>
+<body>
+	<!-- 插入碎片 -->
+	<div th:insert="header::title"></div>
+	<table border="1px" width="800px">
+		<thead>
+			<tr>
+			<th>序号</th>
+			<th>编号</th>
+			<th>姓名</th>
+			<th>岗位</th>
+			<th>上级领导编号</th>
+			<th>入职日期</th>
+			<th>工资</th>
+			<th>奖金</th>
+			<th>部门编号</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="emp,stat:${list}" th:class="${emp.job == 'MANAGER' || emp.job == 'PRESIDENT'}?'highlight':''">
+				<td>[[${stat.index+1}]]</td>
+				<td>[[${emp.empno}]]</td>
+				<td>[[${#strings.substring(emp.ename,0,3)}]]</td>
+				<td>[[${emp.job}]]</td>
+				<td>[[${emp.mgr}]]</td>
+				<td>[[${#dates.format(emp.hiredate,'yyyy年MM月dd日')}]]</td>
+				<td th:style="${emp.sal>1500}?'color:red'">[[${#numbers.formatCurrency(emp.sal)}]]</td>
+				<td th:text="${emp.comm==null||emp.comm==0}?'N/A':${emp.comm}"></td>
+				<td th:switch="${emp.deptno}">
+					<span th:case="10">财务部</span>
+					<span th:case="20">销售部</span>
+					<span th:case="30">人事部</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
